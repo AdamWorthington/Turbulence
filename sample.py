@@ -16,23 +16,26 @@ urls = [
 	]
 ]
 
+def main():
+	i = 0
+	while 1 :
+		j = 0
+		data = {}
+		data['status'] = "ERR"
+		data['temperature'] = -1
+		data['voltage'] = -1
+		for val in urls[i]:
+			resp = requests.get(url=val)
+			o = json.loads(resp.text)
+			if (j == 0) and ('status' in o):
+				data['status'] = o['status']
+			elif (j == 1) and ('value' in o):
+				data['temperature'] = o['value']
+			elif (j == 2) and ('value' in o):
+				data['voltage'] = o['value']
+			j = j + 1
+		print str(data)
+		i = (i + 1)% 3
 
-i = 0
-while 1 :
-	j = 0
-	data = {}
-	data['status'] = "ERR"
-	data['temperature'] = -1
-	data['voltage'] = -1
-	for val in urls[i]:
-		resp = requests.get(url=val)
-		o = json.loads(resp.text)
-		if (j == 0) and ('status' in o):
-			data['status'] = o['status']
-		elif (j == 1) and ('value' in o):
-			data['temperature'] = o['value']
-		elif (j == 2) and ('value' in o):
-			data['voltage'] = o['value']
-		j = j + 1
-	print str(data)
-	i = (i + 1)% 3
+if __name__== "__main__":
+  main()

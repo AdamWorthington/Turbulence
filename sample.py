@@ -1,6 +1,6 @@
 import json, requests
 
-test = [
+urls = [
 	[
 	'https://turbine-farm.run.aws-usw02-pr.ice.predix.io/api/turbines/1/heartbeat',
 	'https://turbine-farm.run.aws-usw02-pr.ice.predix.io/api/turbines/1/sensors/temperature',
@@ -16,23 +16,23 @@ test = [
 	]
 ]
 
+
 i = 0
 while 1 :
 	j = 0
-	builder = ""
-	builder = builder + ('____________________________\nTurbine ' + str(i+1) + ':\n')
-	for val in test[i]:
+	data = {}
+	data['status'] = "ERR"
+	data['temperature'] = -1
+	data['voltage'] = -1
+	for val in urls[i]:
 		resp = requests.get(url=val)
 		o = json.loads(resp.text)
 		if (j == 0) and ('status' in o):
-			
-			builder = builder + ('Status: ' + str(o['status']) + '\n')
+			data['status'] = o['status']
 		elif (j == 1) and ('value' in o):
-			builder = builder + ('Temperature: ' + str(o['value'])+ '\n')
+			data['temperature'] = o['value']
 		elif (j == 2) and ('value' in o):
-			builder = builder + ('Voltage: ' + str(o['value'])+ '\n')
-		else:
-			builder = builder +  'Could not reach api\n'
+			data['voltage'] = o['value']
 		j = j + 1
-	print builder
+	print str(data)
 	i = (i + 1)% 3

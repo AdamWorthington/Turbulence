@@ -44,14 +44,14 @@ def main():
 				voltage = o["value"]
 			inner["name"] = "turbulence-turbine-" + str(i + 1) + "-temperature"
 
-			datapoints = [cur_time, temperature, voltage]
+			datapoints = [int(cur_time), temperature, voltage]
 			dataset = [datapoints]
 			inner["datapoints"] = dataset
 			data_arr = [inner]
 			outer["body"] = data_arr
 			j = j + 1
 		#print str(data)
-		post(outer)
+		print (outer)
 		i = (i + 1)% 3
 
 

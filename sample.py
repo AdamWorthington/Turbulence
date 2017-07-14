@@ -16,11 +16,18 @@ urls = [
 	]
 ]
 
+def post(payload):
+	url = 'http://httpbin.org/post'
+	headers = {'content-type': 'application/json'}
+	response = requests.post(url, data=json.dumps(payload), headers=headers)
+	print str(response.text)
+
 def main():
 	i = 0
 	while 1 :
 		j = 0
 		data = {}
+		data['id'] = i + 1
 		data['status'] = "ERR"
 		data['temperature'] = -1
 		data['voltage'] = -1
@@ -34,8 +41,10 @@ def main():
 			elif (j == 2) and ('value' in o):
 				data['voltage'] = o['value']
 			j = j + 1
-		print str(data)
+		#print str(data)
+		post(data)
 		i = (i + 1)% 3
+
 
 if __name__== "__main__":
   main()

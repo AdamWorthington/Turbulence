@@ -51,7 +51,7 @@ def main():
 			outer["body"] = data_arr
 			j = j + 1
 		#print str(data)
-		print (outer)
+		post (outer)
 		i = (i + 1)% 3
 
 

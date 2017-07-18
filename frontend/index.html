@@ -5,21 +5,87 @@
   <title>Document</title>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="root"></div>
+<div class="container">
+
+<div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Turbulence</h3>
+      </div>
+  <div class="jumbotron">
+          <h1>Turbine 1 Temperature</h1>
+          <div id="turbine1">
+    
+          </div>
+          
+        </div>
+     <div class="jumbotron">
+          
+          <h1>Turbine 2 Temperature</h1>
+          <div id="turbine2">
+    
+          </div>
+          
+        </div>
+
+     <div class="jumbotron">
+          
+          <h1>Turbine 3 Temperature</h1>
+          <div id="turbine3">
+    
+          </div>
+        </div>
+</div>
 
 <script>
 $.ajax({
   url: 'https://turbine-farm.run.aws-usw02-pr.ice.predix.io/api/turbines/1/sensors/temperature',
   dataType: 'jsonp',
   success: function(data) {
-  $('#root').html(data);
+  $('#turbine1').html(data);
   },
   error: function(e) {
         data = "There is no data to display. Turbine 1 is down."
-        $('#root').html(data);
+        $('#turbine1').html(data);
+  }
+});
+$.ajax({
+  url: 'https://turbine-farm.run.aws-usw02-pr.ice.predix.io/api/turbines/2/sensors/temperature',
+  dataType: 'jsonp',
+  success: function(data) {
+  $('#turbine2').html(data);
+  },
+  error: function(e) {
+        data = "There is no data to display. Turbine 2 is down."
+        $('#turbine2').html(data);
+  }
+});
+$.ajax({
+  url: 'https://turbine-farm.run.aws-usw02-pr.ice.predix.io/api/turbines/3/sensors/temperature',
+  dataType: 'jsonp',
+  success: function(data) {
+  $('#turbine3').html(data);
+  },
+  error: function(e) {
+        data = "There is no data to display. Turbine 3 is down."
+        $('#turbine3').html(data);
   }
 });
 </script>

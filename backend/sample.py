@@ -36,7 +36,7 @@ def main():
 
 			resp = requests.get(url=val)
 			o = json.loads(resp.text)
-			if o != None:
+			if o is not None:
 				if (j == 0) and ("status" in o):
 					status = o["status"]
 				elif (j == 1) and ("value" in o):

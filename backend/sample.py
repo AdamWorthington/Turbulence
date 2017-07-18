@@ -32,24 +32,25 @@ def main():
 		inner = {}
 		cur_time = str(int(time.time()))
 		outer["messageId"] = "turbulence-" + cur_time
-	
 		for val in urls[i]:
+
 			resp = requests.get(url=val)
 			o = json.loads(resp.text)
-			if (j == 0) and ("status" in o):
-				status = o["status"]
-			elif (j == 1) and ("value" in o):
-				temperature = o["value"]
-			elif (j == 2) and ("value" in o):
-				voltage = o["value"]
-			inner["name"] = "turbulence-turbine-" + str(i + 1) + "-temperature"
+			if o != None:
+				if (j == 0) and ("status" in o):
+					status = o["status"]
+				elif (j == 1) and ("value" in o):
+					temperature = o["value"]
+				elif (j == 2) and ("value" in o):
+					voltage = o["value"]
+				inner["name"] = "turbulence-turbine-" + str(i + 1) + "-temperature"
 
-			datapoints = [int(cur_time), temperature, voltage]
-			dataset = [datapoints]
-			inner["datapoints"] = dataset
-			data_arr = [inner]
-			outer["body"] = data_arr
-			j = j + 1
+				datapoints = [int(cur_time), temperature, voltage]
+				dataset = [datapoints]
+				inner["datapoints"] = dataset
+				data_arr = [inner]
+				outer["body"] = data_arr
+				j = j + 1
 		post (outer)
 		i = (i + 1)% 3
 

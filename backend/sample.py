@@ -50,10 +50,8 @@ def main():
 			data_arr = [inner]
 			outer["body"] = data_arr
 			j = j + 1
-		#print str(data)
 		post (outer)
 		i = (i + 1)% 3
-
 
 if __name__== "__main__":
   main()

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script>
+$.ajax({
+  url: 'https://turbine-farm.run.aws-usw02-pr.ice.predix.io/api/turbines/1/sensors/temperature',
+  dataType: 'jsonp',
+  success: function(data) {
+  $('#root').html(data);
+  },
+  error: function(e) {
+        data = "There is no data to display. Turbine 1 is down."
+        $('#root').html(data);
+  }
+});
+</script>
+  
+</body>
+</html>
+

@@ -60,6 +60,7 @@ $.ajax({
   dataType: 'jsonp',
   success: function(data) {
   $('#turbine1').html(data);
+  $('#turbine1-container').removeClass("red-jumbotron")
   },
   error: function(e) {
         data = "There is no data to display. Turbine 1 is down."
@@ -72,6 +73,8 @@ $.ajax({
   dataType: 'jsonp',
   success: function(data) {
   $('#turbine2').html(data);
+    $('#turbine2-container').removeClass("red-jumbotron")
+
   },
   error: function(e) {
         data = "There is no data to display. Turbine 2 is down."
@@ -85,6 +88,8 @@ $.ajax({
   dataType: 'jsonp',
   success: function(data) {
   $('#turbine3').html(data);
+    $('#turbine3-container').removeClass("red-jumbotron")
+
   },
   error: function(e) {
         data = "There is no data to display. Turbine 3 is down."

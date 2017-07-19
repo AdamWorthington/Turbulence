@@ -1,4 +1,5 @@
 import json, requests, time
+import websocket
 
 urls = [
 	[
@@ -16,10 +17,44 @@ urls = [
 	]
 ]
 
+con_url = 'wss://gateway-predix-data-services.run.aws-usw02-pr.ice.predix.io/v1/stream/messages'
+predix_zone_id = 'd97f5953-2c07-4e8f-ac0d-8b8df897135e'
+
+def gettoken():
+
+   url = 'https://ff2359d6-05b4-4a0f-9001-2533c77cfe9d.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token'
+
+   payload = "grant_type=client_credentials"
+   headers = {
+       'content-type': "application/x-www-form-urlencoded",
+       'authorization': 'Basic dHMtY2xpZW50MTpLZld1cHhTd001Q1hmaDg='
+   }
+
+   response     = requests.request("POST", url, data=payload, headers=headers)
+   access_token = json.loads(response.text)[u'access_token']
+   return access_token
+
+def post2(payload):
+
+	zone_id = (predix_zone_id)
+	ingestion_url = (con_url)
+	data = payload
+	headers = {
+		'Authorization': gettoken(),
+		'Predix-Zone-Id': zone_id,
+		'Content-Type': 'application/json',
+	}
+
+	ws = websocket.create_connection(ingestion_url, header=headers)
+	ws.send(json.dumps(payload))
+	result = ws.recv()
+	print('Got back message confirmation TimeSeries:\n %s' % result)
+
+
 def post(payload):
 	url = "http://httpbin.org/post"
-	headers = {"content-type": "application/json"}
-	response = requests.post(url, data=json.dumps(payload), headers=headers)
+	headers = {"content-type": "application/json", "Authorization" : gettoken(), "Predix-Zone-Id" : predix_zone_id}
+	response = requests.post(con_url, data=json.dumps(payload), headers=headers)
 	print str(response.text)
 
 def main():
@@ -43,15 +78,16 @@ def main():
 					temperature = o["value"]
 				elif (j == 2) and ("value" in o):
 					voltage = o["value"]
-				inner["name"] = "turbulence-turbine-" + str(i + 1) + "-temperature"
-
+				# inner["name"] = "turbulence-turbine-" + str(i + 1) + "-temperature"
+				inner["name"] = "turbulence-turbine-" + '4' + "-temperature"
 				datapoints = [int(cur_time), temperature, voltage]
 				dataset = [datapoints]
 				inner["datapoints"] = dataset
 				data_arr = [inner]
 				outer["body"] = data_arr
 				j = j + 1
-		post (outer)
+		print outer
+		post2 (outer)
 		i = (i + 1)% 3
 
 if __name__== "__main__":

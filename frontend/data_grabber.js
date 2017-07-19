@@ -1,10 +1,10 @@
 $.ajax({
     url: 'https://turbine-farm.run.aws-usw02-pr.ice.predix.io/api/turbines/1/sensors/temperature',
-    dataType: 'jsonp',
     success: function(data) {
-        $('#turbine1').html(data);
+        data_string = JSON.stringify(data)
+        $('#turbine1').html(data_string);
         $('#turbine1-container').removeClass("red-jumbotron")
-        console.log("success: " + data)
+        console.log("success: " + data_string)
     },
     error: function(error) {
         console.log("error: " + error)
@@ -17,9 +17,10 @@ $.ajax({
     url: 'http://echo.jsontest.com/key/value/one/two',
     dataType: 'jsonp',
     success: function(data) {
-        $('#turbine2').html(data);
+        data_string = JSON.stringify(data)
+        $('#turbine2').html(data_string);
         $('#turbine2-container').removeClass("red-jumbotron")
-        console.log("success: " + data)
+        console.log("success for jsonp to json: " + data_string)
 
     },
     error: function(error) {
@@ -32,11 +33,11 @@ $.ajax({
 });
 $.ajax({
     url: 'https://turbine-farm.run.aws-usw02-pr.ice.predix.io/api/turbines/3/sensors/temperature',
-    dataType: 'jsonp',
     success: function(data) {
-        $('#turbine3').html(data);
+        data_string = JSON.stringify(data)
+        $('#turbine3').html(data_string);
         $('#turbine3-container').removeClass("red-jumbotron")
-        console.log("success: " + data)
+        console.log("success: " + data_string)
 
     },
     error: function(error) {

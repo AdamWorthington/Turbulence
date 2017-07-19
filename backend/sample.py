@@ -78,8 +78,8 @@ def main():
 					temperature = o["value"]
 				elif (j == 2) and ("value" in o):
 					voltage = o["value"]
-				# inner["name"] = "turbulence-turbine-" + str(i + 1) + "-temperature"
-				inner["name"] = "turbulence-turbine-" + '4' + "-temperature"
+				inner["name"] = "turbulence-turbine-" + str(i + 1) + "-temperature"
+				#inner["name"] = "turbulence-turbine-" + '4' + "-temperature"
 				datapoints = [int(cur_time), temperature, voltage]
 				dataset = [datapoints]
 				inner["datapoints"] = dataset
@@ -88,6 +88,8 @@ def main():
 				j = j + 1
 		print outer
 		post2 (outer)
+		temperature = 0
+		voltage = 0
 		i = (i + 1)% 3
 
 if __name__== "__main__":

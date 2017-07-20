@@ -81,5 +81,9 @@ body > footer > div > p {
 }
 
 #main-column > div > ul > li.nav.active > a {
-  
+
+}
+
+#csv-button {
+  margin-top: 20px;
 }

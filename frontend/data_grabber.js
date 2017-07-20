@@ -1,9 +1,10 @@
 $(document).ready(function() {
     queryTurbines();
-    setInterval("queryTurbines()",5000);
+    setInterval("queryTurbines()", 5000);
 });
 
 function queryTurbines() { 
+    console.log("turbines were queried")
   $.ajax({
       url: 'https://turbine-farm.run.aws-usw02-pr.ice.predix.io/api/turbines/1/sensors/temperature',
       success: function(data) {

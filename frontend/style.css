@@ -87,3 +87,15 @@ body > footer > div > p {
 #csv-button {
   margin-top: 20px;
 }
+
+#temp-tab > h2 {
+  color: white;
+}
+
+#volt-tab > h2 {
+  color: white;
+}
+
+.nav-tabs>li>a, .nav-tabs>li>a:focus {
+  color: white;
+}

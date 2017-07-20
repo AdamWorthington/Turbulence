@@ -58,3 +58,7 @@ code {
 #right-column {
   margin-top: 95px;
 }
+
+#navbar > ul > li:nth-child(1) > button {
+  margin-top: 14px;
+}

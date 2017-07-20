@@ -62,3 +62,7 @@ code {
 #navbar > ul > li:nth-child(1) > button {
   margin-top: 14px;
 }
+
+body > footer > div > p {
+  padding-top: 18px;
+}

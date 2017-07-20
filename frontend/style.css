@@ -66,3 +66,11 @@ code {
 body > footer > div > p {
   padding-top: 18px;
 }
+
+#main-column > h2 {
+  color: white;
+}
+
+#about-container {
+  margin-top: 95px;
+}

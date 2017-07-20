@@ -71,6 +71,13 @@ var settings = {
 
  }
 
+ function fetchAndDownload(){
+
+   var formData = {};
+    return $.ajax(settings).then(requestSuccess, requestFail);
+
+ }
+
  function requestSuccess(response){
 
    return response.tags["0"].results["0"].values.map(function(item){
@@ -127,7 +134,7 @@ var settings = {
           }
       }
 
- getAll().done(function(res){
+ fetchAndDownload().done(function(res){
     var arrayLength = res.length;
     console.log(arrayLength);
     var timeArray = [];
@@ -145,7 +152,7 @@ var settings = {
     [voltArray]
     ])
    // console.log(res[0].time)
-   console.log(JSON.stringify(res));
+   // console.log(JSON.stringify(res));
 
  }).fail(function(err){
 

@@ -29,7 +29,6 @@ $.ajax({
         error = "There is no data to display. Turbine 2 is currently down."
         $('#turbine2').html(error);
         $('#turbine2-container').addClass("red-jumbotron")
-
     }
 });
 $.ajax({

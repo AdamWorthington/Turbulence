@@ -43,7 +43,7 @@ code {
 }
 
 .red-jumbotron {
-  background: #EF5B5B;
+  background-color: rgb(242, 95, 92);
   color: white;
 }
 
@@ -77,4 +77,9 @@ body > footer > div > p {
 
 #tempChart {
   width: 100px;
+
+}
+
+#main-column > div > ul > li.nav.active > a {
+  
 }

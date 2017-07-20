@@ -33,7 +33,7 @@ function queryTurbines() {
       },
       error: function(error) {
           console.log("error: " + error)
-          error = "There is no data to display. Turbine 2 is currently down."
+          error = "There is no data to display. Turbine 2 is down."
           $('#turbine2').html(error);
           $('#turbine2-container').addClass("red-jumbotron")
       }

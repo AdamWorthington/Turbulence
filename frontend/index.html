@@ -48,10 +48,24 @@
     <div class="container-fluid" id="main-container">
         <div class="row">
             <div class="col-md-9" id="main-column">
-                <h2>Temperature</h2>
-                <canvas id="tempChart" width="400" height="200"></canvas>
-                <h2>Voltage</h2>
-                <canvas id="voltChart" width="400" height="200"></canvas>
+                <div class="container">
+                    <ul class="nav nav-tabs">
+                        <li class="nav active"><a href="#temp-tab" data-toggle="tab">Temperature</a></li>
+                        <li class="nav"><a href="#volt-tab" data-toggle="tab">Voltage</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="temp-tab">
+                            <h2>Temperature</h2>
+                            <canvas id="tempChart"></canvas>
+                        </div>
+                        <div class="tab-pane fade" id="volt-tab">
+                            <h2>Voltage</h2>
+                            <canvas id="voltChart"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-3" id="right-column">
                 <div class="jumbotron" id="turbine1-container">

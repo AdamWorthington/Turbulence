@@ -74,3 +74,7 @@ body > footer > div > p {
 #about-container {
   margin-top: 95px;
 }
+
+#tempChart {
+  width: 100px;
+}
